@@ -1,9 +1,9 @@
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run threshold-fail.js
 
-         /\      Grafana   /â€¾â€¾/
+         /\      Grafana   /‾‾/
     /\  /  \     |\  __   /  /
-   /  \/    \    | |/ /  /   â€¾â€¾\
-  /          \   |   (  |  (â€¾)  |
+   /  \/    \    | |/ /  /   ‾‾\
+  /          \   |   (  |  (‾)  |
  / __________ \  |_|\_\  \_____/
 
 
@@ -16,42 +16,42 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run threshold-fail.js
 
 
 
-  â–ˆ THRESHOLDS
+  █ THRESHOLDS
 
     http_req_duration
-    âœ— 'p(95)<50' p(95)=276.29ms
+    ✗ 'p(95)<50' p(95)=232.57ms
 
     http_req_failed
-    âœ“ 'rate<0.01' rate=0.00%
+    ✓ 'rate<0.01' rate=0.00%
 
 
-  â–ˆ TOTAL RESULTS
+  █ TOTAL RESULTS
 
-    checks_total.......: 1380    22.627797/s
-    checks_succeeded...: 100.00% 1380 out of 1380
-    checks_failed......: 0.00%   0 out of 1380
+    checks_total.......: 1390    22.70059/s
+    checks_succeeded...: 100.00% 1390 out of 1390
+    checks_failed......: 0.00%   0 out of 1390
 
-    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
+    ✓ status 200 байна
 
     HTTP
-    http_req_duration..............: avg=150.04ms min=52.8ms med=149.24ms max=323.44ms p(90)=270.55ms p(95)=276.29ms
-      { expected_response:true }...: avg=150.04ms min=52.8ms med=149.24ms max=323.44ms p(90)=270.55ms p(95)=276.29ms
-    http_req_failed................: 0.00%  0 out of 2760
-    http_reqs......................: 2760   45.255594/s
+    http_req_duration..............: avg=142.57ms min=53.1ms med=165.67ms max=268.25ms p(90)=230.5ms p(95)=232.57ms
+      { expected_response:true }...: avg=142.57ms min=53.1ms med=165.67ms max=268.25ms p(90)=230.5ms p(95)=232.57ms
+    http_req_failed................: 0.00%  0 out of 2780
+    http_reqs......................: 2780   45.401179/s
 
     EXECUTION
-    iteration_duration.............: avg=1.32s    min=1.27s  med=1.29s    max=2.29s    p(90)=1.33s    p(95)=1.37s
-    iterations.....................: 1380   22.627797/s
-    vus............................: 30     min=30        max=30
+    iteration_duration.............: avg=1.3s     min=1.27s  med=1.28s    max=2.21s    p(90)=1.29s   p(95)=1.3s
+    iterations.....................: 1390   22.70059/s
+    vus............................: 10     min=10        max=30
     vus_max........................: 30     min=30        max=30
 
     NETWORK
     data_received..................: 5.3 MB 87 kB/s
-    data_sent......................: 229 kB 3.8 kB/s
+    data_sent......................: 230 kB 3.8 kB/s
 
 
 
 
-running (1m01.0s), 00/30 VUs, 1380 complete and 0 interrupted iterations
-default âœ“ [======================================] 30 VUs  1m0s
+running (1m01.2s), 00/30 VUs, 1390 complete and 0 interrupted iterations
+default ✓ [======================================] 30 VUs  1m0s
 ERRO[0061] thresholds on metrics 'http_req_duration' have been crossed

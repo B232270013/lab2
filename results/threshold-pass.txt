@@ -1,9 +1,25 @@
+PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run -e SLO_P95_MS=446.145 threshold-pass.js
+
+         /\      Grafana   /‾‾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   ‾‾\
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/
+
+
+     execution: local
+        script: threshold-pass.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 30 max VUs, 1m30s max duration (incl. graceful stop):
+              * default: 30 looping VUs for 1m0s (gracefulStop: 30s)
+
 
 
   █ THRESHOLDS
 
     http_req_duration
-    ✓ 'p(95)<446.145' p(95)=235.78ms
+    ✓ 'p(95)<446.145' p(95)=231.85ms
 
     http_req_failed
     ✓ 'rate<0.01' rate=0.00%
@@ -11,24 +27,30 @@
 
   █ TOTAL RESULTS
 
-    checks_total.......: 1380    22.60735/s
-    checks_succeeded...: 100.00% 1380 out of 1380
-    checks_failed......: 0.00%   0 out of 1380
+    checks_total.......: 1388    22.676438/s
+    checks_succeeded...: 100.00% 1388 out of 1388
+    checks_failed......: 0.00%   0 out of 1388
 
     ✓ status 200 байна
 
     HTTP
-    http_req_duration..............: avg=144.36ms min=52.7ms med=170.42ms max=566.19ms p(90)=231.98ms p(95)=235.78ms
-      { expected_response:true }...: avg=144.36ms min=52.7ms med=170.42ms max=566.19ms p(90)=231.98ms p(95)=235.78ms
-    http_req_failed................: 0.00%  0 out of 2760
-    http_reqs......................: 2760   45.214701/s
+    http_req_duration..............: avg=142.42ms min=52.92ms med=165.38ms max=389.26ms p(90)=229.67ms p(95)=231.85ms
+      { expected_response:true }...: avg=142.42ms min=52.92ms med=165.38ms max=389.26ms p(90)=229.67ms p(95)=231.85ms
+    http_req_failed................: 0.00%  0 out of 2776
+    http_reqs......................: 2776   45.352875/s
 
     EXECUTION
-    iteration_duration.............: avg=1.31s    min=1.27s  med=1.28s    max=2.46s    p(90)=1.29s    p(95)=1.33s
-    iterations.....................: 1380   22.60735/s
-    vus............................: 1      min=1         max=30
+    iteration_duration.............: avg=1.3s     min=1.27s   med=1.28s    max=2.27s    p(90)=1.29s    p(95)=1.3s
+    iterations.....................: 1388   22.676438/s
+    vus............................: 8      min=8         max=30
     vus_max........................: 30     min=30        max=30
 
     NETWORK
     data_received..................: 5.3 MB 87 kB/s
-    data_sent......................: 229 kB 3.8 kB/s
+    data_sent......................: 230 kB 3.8 kB/s
+
+
+
+
+running (1m01.2s), 00/30 VUs, 1388 complete and 0 interrupted iterations
+default ✓ [======================================] 30 VUs  1m0s

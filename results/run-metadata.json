@@ -1,5 +1,5 @@
 ﻿{
-    "source_note":  "5/30/100 VU metrics transcribed from the latest user-pasted terminal output. PASS rerun by assistant. Previous stages and FAIL retained.",
+    "source_note":  "All five current runs are extracted from results/submitted-terminal.txt supplied by the user. Previous stages result retained. Exit codes were not included in the transcript.",
     "baseline":  {
                      "vus":  5,
                      "duration":  "1m",
@@ -23,11 +23,20 @@
                   },
     "threshold_pass":  {
                            "vus":  30,
-                           "source":  "assistant-executed k6 run",
+                           "source":  "user-pasted terminal output",
                            "slo_p95_ms":  446.145,
-                           "command":  "k6 run --no-color --quiet -e SLO_P95_MS=446.145 threshold-pass.js",
-                           "exitCode":  0,
-                           "p95_ms":  235.78,
+                           "command":  "k6 run -e SLO_P95_MS=446.145 threshold-pass.js",
+                           "p95_ms":  231.85,
+                           "duration":  "1m",
+                           "result":  "PASS"
+                       },
+    "threshold_fail":  {
+                           "vus":  30,
+                           "threshold_p95_ms":  50,
+                           "source":  "user-pasted terminal output",
+                           "command":  "k6 run threshold-fail.js",
+                           "result":  "FAIL (expected)",
+                           "p95_ms":  232.57,
                            "duration":  "1m"
                        }
 }

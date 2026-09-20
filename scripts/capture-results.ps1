@@ -7,7 +7,8 @@ $cases = @(
     @{ Name='5 VU'; File='run-05vu.txt'; Command='k6 run --vus 5 --duration 1m script.js'; Detail='5 VU | 1 minute | baseline' },
     @{ Name='30 VU'; File='run-30vu.txt'; Command='k6 run --vus 30 --duration 1m script.js'; Detail='30 VU | 1 minute' },
     @{ Name='100 VU'; File='run-100vu.txt'; Command='k6 run --vus 100 --duration 1m script.js'; Detail='100 VU | 1 minute' },
-    @{ Name='PASS'; File='threshold-pass.txt'; Command='k6 run --no-color --quiet -e SLO_P95_MS=446.145 threshold-pass.js'; Detail='30 VU | 1 minute | SLO p95 < 446.145 ms' }
+    @{ Name='PASS'; File='threshold-pass.txt'; Command='k6 run -e SLO_P95_MS=446.145 threshold-pass.js'; Detail='30 VU | 1 minute | SLO p95 < 446.145 ms' },
+    @{ Name='FAIL'; File='threshold-fail.txt'; Command='k6 run threshold-fail.js'; Detail='30 VU | 1 minute | Deliberate p95 < 50 ms threshold' }
 )
 foreach ($case in $cases) {
     $source = Join-Path $root ('results\' + $case.File)
@@ -19,7 +20,7 @@ foreach ($case in $cases) {
     $imagePath = Join-Path $root ('screenshots\' + $case.Name + '.png')
     $uri = [Uri]::new($page).AbsoluteUri
     $profile = Join-Path $temp 'edge-profile'
-    $height = if ($case.Name -eq 'PASS') { 1450 } else { 1150 }
+    $height = 300 + 24 * (($content.Trim() -split '\r?\n').Count)
     $ErrorActionPreference = 'Continue'
     & $Browser --headless --disable-gpu --no-first-run --hide-scrollbars "--user-data-dir=$profile" "--window-size=1500,$height" "--screenshot=$imagePath" $uri 2>&1 | Out-Null
     $browserExit = $LASTEXITCODE
