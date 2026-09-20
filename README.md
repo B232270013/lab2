@@ -7,7 +7,7 @@
 
 ## 1. Зорилго
 
-k6 ашиглан latency (p90, p95), throughput, error rate болон availability-г хэмжиж, ачаалал нэмэгдэх үед системийн гүйцэтгэл хэрхэн өөрчлөгдөхийг ажиглав. Туршилтад зөвшөөрөгдсөн `https://test.k6.io` practice сайтыг ашигласан.
+k6 ашиглан latency (p90, p95), throughput, error rate болон хүсэлтийн амжилтын хувийг хэмжиж, ачаалал нэмэгдэх үед гүйцэтгэл хэрхэн өөрчлөгдөхийг ажиглав. Туршилтын хаяг нь `https://test.k6.io`. Скриптүүд HTTP GET хүсэлт илгээж, эцсийн хариуны status 200 эсэхийг шалгаад `sleep(1)` ажиллуулдаг.
 
 ## 2. Файлын бүтэц
 
@@ -21,158 +21,157 @@ lab2/
 ├── results/
 │   ├── run-05vu.txt
 │   ├── run-30vu.txt
-│   └── run-100vu.txt
+│   ├── run-100vu.txt
+│   ├── stages.txt
+│   ├── threshold-pass.txt
+│   ├── threshold-fail.txt
+│   └── latest-terminal.txt
 └── screenshots/
-    ├── run-05vu.png
-    ├── run-30vu.png
-    ├── run-100vu.png
-    ├── threshold-pass.png
-    └── threshold-fail.png
+    └── .gitkeep
 ```
 
 ## 3. k6 хувилбар
 
-Энд өөрийн компьютер дээр ажиллуулсан `k6 version`-ийн яг output-ыг оруулна.
+Хавтас дахь `.tools/k6-v2.2.0-windows-amd64/k6.exe` хэрэгслийн `version` командын бодит гаралт:
 
 ```text
-TODO: paste `k6 version` output here
+k6.exe v2.2.0 (commit/00a9a1b7f5, go1.26.5, windows/amd64)
+```
+
+Доорх командуудыг `lab2` хавтсаас PowerShell дээр ажиллуулна. Локал k6 хэрэгслийн замыг эхлээд тохируулна:
+
+```powershell
+$k6 = '.\.tools\k6-v2.2.0-windows-amd64\k6.exe'
+& $k6 version
 ```
 
 ## 4. Суурь хэмжилт
 
-Эхлээд 5 VU ачааллаар baseline хэмжилт хийсэн.
+Энэ тайлангийн хэмжилтүүдийг [шинээр илгээсэн terminal үр дүн](results/latest-terminal.txt)-гээс авсан. Өмнөх `results/run-*.txt`, `stages.txt`, `threshold-pass.txt`, `threshold-fail.txt` файлуудыг хуучин туршилтын нотолгоо болгон хадгалсан; доорх шинэ утгуудын эх сурвалж нь `latest-terminal.txt` юм.
 
-```bash
-k6 run --vus 5 --duration 1m script.js | tee results/run-05vu.txt
+Шинэ baseline нь **5 VU, 30 секунд** ажилласан. `script.js`-ийн тохиргоо `vus: 5, duration: "30s"` байна. Ажиллуулсан команд:
+
+```powershell
+& $k6 run script.js
 ```
 
-Baseline p95 = **TODO ms**
+Baseline p95 = **293.27 ms**. Нийт **230** HTTP хүсэлт, **7.397402 хүсэлт/сек** throughput, **0.00%** error rate бүртгэгдсэн.
 
 ## 5. 5 / 30 / 100 VU харьцуулалт
 
-Даалгаврын шаардлагын дагуу нэг stages run-ийн нийлбэр summary-г хүснэгтэд шууд ашиглахгүй. Тусдаа 1 минутын туршилтаас авсан утгуудыг ашиглана.
+| VU | Хугацаа | p90 (ms) | p95 (ms) | Throughput (http_reqs/s) | Error rate |
+|---:|---:|---:|---:|---:|---:|
+| 5 | 30s | 274.57 | 293.27 | 7.397402 | 0.00% |
+| 30 | 1m | 229.83 | 232.88 | 45.311239 | 0.00% |
+| 100 | 1m | 230.78 | 233.22 | 151.117004 | 0.00% |
 
-```bash
-k6 run --vus 5 --duration 1m script.js | tee results/run-05vu.txt
-k6 run --vus 30 --duration 1m script.js | tee results/run-30vu.txt
-k6 run --vus 100 --duration 1m script.js | tee results/run-100vu.txt
+30 болон 100 VU-д ажиллуулсан командууд:
+
+```powershell
+& $k6 run --vus 30 --duration 1m script.js
+& $k6 run --vus 100 --duration 1m script.js
 ```
 
-### Хэмжилтийн хүснэгт
+Эх сурвалж: [latest-terminal.txt](results/latest-terminal.txt)-ийн эхний гурван туршилт. p90/p95-ийг `http_req_duration`, throughput-ийг `http_reqs` мөрийн `/s` утга, error rate-ийг `http_req_failed` мөрөөс авсан. Амжилтгүй HTTP хүсэлт тус бүр **0/230, 0/2760, 0/9258**. Status 200 шалгалт тус бүр **115/115, 1380/1380, 4629/4629** буюу **100.00%** амжилттай.
 
-| VU | p90 | p95 | Throughput (http_reqs/s) | Error rate |
-|---:|---:|---:|---:|---:|
-| 5 | TODO | TODO | TODO | TODO |
-| 30 | TODO | TODO | TODO | TODO |
-| 100 | TODO | TODO | TODO | TODO |
+**Хугацааны ялгаа:** шинэ 5 VU нь 30 секунд, харин 30/100 VU нь 1 минут ажилласан. Бүх түвшинд 1 минутын туршилт шаардлагатай бол 5 VU-г дахин хэмжинэ:
 
-> **Анхаарах:** Дээрх TODO утгуудыг k6 output файлынхаа бодит утгаар солино. README-ийн хүснэгт болон `results/*.txt` файлын утгууд яг таарч байх ёстой.
+```powershell
+& $k6 run --vus 5 --duration 1m script.js
+```
+
+Энэ дахин хэмжилтийн үр дүн илгээсэн текстэд байхгүй тул 30 секундийн утгыг 1 минутын хэмжилт гэж тэмдэглээгүй.
 
 ## 6. Stages туршилт
 
-Ачааллыг 5 → 30 → 100 VU болгон өсгөж, дараа нь 0 болгож бууруулсан.
+Ачааллын зорилтот түвшнийг 30 секундэд 5 VU, дараагийн 1 минутад 30 VU, дараагийн 30 секундэд 100 VU болгон өсгөж, сүүлийн 30 секундэд 0 VU болгож бууруулсан. Төлөвлөсөн нийт хугацаа 2 минут 30 секунд.
 
-```bash
-k6 run stages.js | tee results/stages.txt
+```powershell
+& $k6 run stages.js
 ```
 
-Stages-ийн зорилго нь ачаалал нэмэгдэх үеийн ерөнхий зан төлөвийг ажиглах юм.
+[Шинэ terminal үр дүн](results/latest-terminal.txt)-ийн stages summary: p90 = **230.12 ms**, p95 = **232.59 ms**, throughput = **46.993386 хүсэлт/сек**, error rate = **0.00%** (0/7080). Status 200 шалгалт **3540/3540** амжилттай. Энэ нь бүх үе шатны нийлбэр учраас тогтмол VU-ийн хүснэгтэд ашиглаагүй.
 
 ## 7. SLO / Threshold
 
-Даалгаврын дагуу SLO-г өөрийн baseline хэмжилтэд үндэслэнэ.
-
-**Томъёо:**
+Шинэ 30 секундийн baseline-аас SLO-г дахин тооцвол:
 
 ```text
 SLO p95 = baseline p95 × 1.5
+        = 293.27 ms × 1.5
+        = 439.905 ms
 ```
 
-Жишээ нь baseline p95 = 80 ms байсан бол SLO = 120 ms болно. Энэ нь зөвхөн жишээ бөгөөд 80 ms-ийг шууд ашиглахгүй.
+Гэхдээ илгээсэн PASS туршилт **өмнөх baseline-аас тооцсон 617.79 ms** босгыг ашигласан. Бодитоор ажиллуулсан команд:
 
-Өөрийн baseline-ээс гаргасан утгаар PASS туршилтыг ажиллуулна:
-
-```bash
-k6 run -e SLO_P95_MS=YOUR_SLO threshold-pass.js | tee results/threshold-pass.txt
+```powershell
+& $k6 run -e SLO_P95_MS=617.79 threshold-pass.js
 ```
 
-`YOUR_SLO`-г өөрийн baseline p95 × 1.5 утгаар солино.
+30 VU, 1 минутын энэ туршилтад p95 = **253.78 ms < 617.79 ms** тул latency threshold **PASS**, error rate = **0.00% < 1%** тул `rate<0.01` мөн **PASS** болсон. Нийт **2758** HTTP хүсэлт, throughput **45.109339 хүсэлт/сек** бүртгэгдсэн.
 
-FAIL туршилтыг зориудаар хатуу `p(95)<50` threshold ашиглан ажиллуулна:
+Хадгалсан p95 нь шинэ тооцоолсон босгоос мөн бага: **253.78 < 439.905**. Гэхдээ шинэ босгоор k6 ажиллуулсан үр дүн илгээсэн текстэд байхгүй. Шинэ 30 секундийн baseline-ийн босгоор шалгах команд:
 
-```bash
-k6 run threshold-fail.js | tee results/threshold-fail.txt
+```powershell
+& $k6 run -e SLO_P95_MS=439.905 threshold-pass.js
 ```
 
-PASS болон FAIL-ийн terminal output-ыг screenshot болгон `screenshots/` хавтаст байрлуулна.
+Хэрэв 5 VU-г 1 минут дахин хэмжвэл тэр шинэ baseline-аас SLO-г дахин тооцож хэрэглэнэ.
+
+FAIL туршилтын команд:
+
+```powershell
+& $k6 run threshold-fail.js
+```
+
+30 VU, 1 минутын FAIL туршилтад p95 = **276.29 ms** тул зориудаар хатуу `p(95)<50` threshold **FAIL** болсон. Error rate **0.00%** тул `rate<0.01` нь **PASS** хэвээр. Нийт **2760** HTTP хүсэлт, throughput **45.255594 хүсэлт/сек**. `thresholds on metrics 'http_req_duration' have been crossed` гэсэн алдаа нь latency босго давсныг харуулна. 50 ms нь FAIL үзүүлэх босго юм.
+
+PASS болон FAIL-ийн нотолгоо: [latest-terminal.txt](results/latest-terminal.txt)-ийн сүүлийн хоёр туршилт.
 
 ## 8. Хэмжсэн үзүүлэлтүүд
 
-- **p90:** хүсэлтийн 90%-ийн хугацаа энэ утгаас бага буюу тэнцүү байна.
-- **p95:** хүсэлтийн 95%-ийн хугацаа энэ утгаас бага буюу тэнцүү байна.
-- **Throughput:** нэг секундэд боловсруулсан HTTP хүсэлтийн хэмжээ.
-- **Error rate:** амжилтгүй HTTP хүсэлтийн хувь.
-- **Availability:** систем хүсэлтэд амжилттай хариу өгч байгаа байдалтай холбоотой хэмжүүр.
+- **p90 / p95:** HTTP хүсэлтийн хугацааны 90 болон 95-р перцентиль; `http_req_duration`-аас уншсан.
+- **Throughput:** секундэд бүртгэгдсэн HTTP хүсэлтийн тоо; `http_reqs`-ийн `/s` утга.
+- **Error rate:** амжилтгүй HTTP хүсэлтийн хувь; `http_req_failed` утга.
+- **Availability:** туршилтын хугацаанд HTTP хүсэлтийн амжилтын хувиар үнэлсэн. `100% − error rate` томъёогоор 5/30/100 VU үед тус бүр **100.00%**. Богино туршилтын энэ үзүүлэлт урт хугацааны uptime-ийг тогтоохгүй.
 
 ## 9. Дүгнэлт
 
-1. 5 VU ачаалалтай үед системийн p95 latency нь **TODO ms** байсан.
-2. 30 VU үед p95 latency **TODO ms** болж өөрчлөгдсөн.
-3. 100 VU үед p95 latency **TODO ms** болсон.
-4. Ачаалал нэмэгдэхэд throughput **TODO** чиг хандлагатай байсан.
-5. Error rate 5, 30 болон 100 VU үед тус бүр **TODO** байсан.
-6. Туршилтаар latency болон throughput нь ачааллын өөрчлөлттэй хэрхэн хамааралтайг ажигласан.
-7. Энэ нь гүйцэтгэлийн хэмжүүр болон ачааллын тестийн хичээлийн ойлголтуудыг практик байдлаар баталгаажуулсан.
-8. Төслийн SLO p95 нь baseline p95-ийн 1.5 дахин үржвэрээр тодорхойлогдсон.
-9. SLO threshold-ийн PASS/FAIL үр дүнг k6-ийн threshold механизмаар шалгасан.
-10. Туршилтын бодит үр дүн нь тухайн компьютер, сүлжээ болон туршилт хийсэн үеийн нөхцөлөөс хамаарч өөрчлөгдөж болох тул output файлуудыг хамт хадгалсан.
-
-> Эцсийн тайлан өгөхөөс өмнө TODO хэсгүүдийг өөрийн бодит хэмжилтээр солино.
+1. 5 VU, 30 секундийн baseline p95 нь **293.27 ms** байсан.
+2. 30 VU, 1 минутын p95 нь **232.88 ms**, baseline-ээс **60.39 ms** бага байсан.
+3. 100 VU, 1 минутын p95 нь **233.22 ms**, 30 VU-ээс ердөө **0.34 ms** их байсан.
+4. Throughput нь 5 → 30 → 100 VU үед **7.397402 → 45.311239 → 151.117004 хүсэлт/сек** болж өссөн.
+5. Гурван туршилтад error rate **0.00%**, status 200 шалгалтын амжилт **100.00%** байсан.
+6. Энэ удаагийн хэмжилтэд ачаалал нэмэгдэхэд p95 тогтмол өсөөгүй. 30 болон 100 VU-ийн p95 ойролцоо байсан. 5 VU-ийн хугацаа богино, туршилтууд тусдаа ажилласан тул latency-ийн ялгааг зөвхөн ачааллаас болсон гэж дүгнэхгүй.
+7. Шинэ baseline-аас **293.27 × 1.5 = 439.905 ms** SLO тооцсон. Хүснэгтийн гурван p95 бүгд үүнээс бага байна.
+8. Илгээсэн PASS туршилтын p95 **253.78 ms**, бодитоор хэрэглэсэн босго **617.79 ms** байсан. **439.905 ms** шинэ босгоор дахин ажилласан нотолгоо одоогоор байхгүй.
+9. Хатуу **50 ms** босготой туршилтын p95 **276.29 ms** байсан тул HTTP алдаагүй ч latency threshold FAIL болсон.
+10. Шинэ хэмжилтийг `results/latest-terminal.txt` файлд хадгалсан. Ижил хугацааны харьцуулалтыг гүйцээхийн тулд 5 VU-г 1 минут дахин хэмжиж, тэр baseline-аас SLO-г шинэчлэн threshold-оо шалгах шаардлагатай. Эдгээр үр дүнгээр системийн дээд хүчин чадлыг тогтоогоогүй.
 
 ## 10. Screenshot
 
-Дараах screenshot-уудыг `screenshots/` хавтаст оруулна:
-
-- 5 VU k6 summary
-- 30 VU k6 summary
-- 100 VU k6 summary
-- Threshold PASS
-- Threshold FAIL
+Одоогоор `screenshots/` хавтаст зөвхөн `.gitkeep` байна. 5/30/100 VU summary болон threshold PASS/FAIL-ийн зураг нэмэгдээгүй. Шинэ terminal output нь `results/latest-terminal.txt` файлд хадгалагдсан.
 
 ## 11. Git commit
 
-3-аас дээш commit хийх шаардлагатай.
+Тохируулсан origin: [B232270013/lab2](https://github.com/B232270013/lab2).
 
-Жишээ:
-
-```bash
-git add lab2/script.js
-git commit -m "Add k6 baseline test"
-
-git add lab2/stages.js
-git commit -m "Add k6 stages test"
-
-git add lab2/threshold-pass.js lab2/threshold-fail.js
-git commit -m "Add k6 thresholds"
-
-git add lab2/README.md lab2/results lab2/screenshots
-git commit -m "Add k6 results and report"
-
-git push origin HEAD
-```
+Шалгах үеийн локал түүхэнд **1 commit** байсан: `d2c16ff Initial commit`. **3+ commit** шаардлага одоогоор хангагдаагүй. Repository public эсэх болон Teams дээр холбоос өгсөн эсэхийг локал файлуудаас баталгаажуулаагүй.
 
 ## 12. Шалгах жагсаалт
 
-- [ ] Public GitHub repository
-- [ ] k6 script ажилласан
-- [ ] p90, p95, throughput, error rate зөв уншсан
-- [ ] 5 / 30 / 100 VU тусдаа хэмжилт хийсэн
-- [ ] stages test ажиллуулсан
-- [ ] Threshold PASS output байгаа
-- [ ] Threshold FAIL output байгаа
-- [ ] SLO-г өөрийн baseline-ээс тооцсон
-- [ ] `results/*.txt` output файлууд байгаа
-- [ ] Screenshot-ууд байгаа
-- [ ] README-ийн хүснэгт бодит output-той таарч байгаа
-- [ ] 3+ commit хийсэн
-- [ ] Teams дээр GitHub холбоосоо өгсөн
+- [ ] Public GitHub repository — public төлөвийг баталгаажуулаагүй
+- [x] k6 script ажилласан
+- [x] p90, p95, throughput, error rate зөв уншсан
+- [x] 5 / 30 / 100 VU тусдаа хэмжилт хийсэн
+- [x] stages test ажиллуулсан
+- [x] Threshold PASS output байгаа
+- [x] Threshold FAIL output байгаа
+- [x] Шинэ baseline-ээс SLO = 439.905 ms гэж тооцсон
+- [ ] Шинэ SLO босгоор threshold туршилт ажиллуулсан — илгээсэн PASS нь 617.79 ms босготой
+- [ ] Бүх VU түвшинд 1 минутын хэмжилт хийсэн — шинэ 5 VU нь 30 секунд
+- [x] `results/*.txt` output файлууд байгаа
+- [ ] Screenshot-ууд байгаа — одоогоор зураг нэмэгдээгүй
+- [x] README-ийн хүснэгт бодит output-той таарч байгаа
+- [ ] 3+ commit хийсэн — локал түүхэнд 1 commit байна
+- [ ] Teams дээр GitHub холбоосоо өгсөн — баталгаажуулаагүй
