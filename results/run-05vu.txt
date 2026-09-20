@@ -1,25 +1,28 @@
+Source: user-pasted terminal output (summary excerpt; logo omitted).
+Command: k6 run --vus 5 --duration 1m script.js
+Scenario: 5 looping VUs for 1m0s (gracefulStop: 30s)
 
+TOTAL RESULTS
+checks_total.......: 225     3.709038/s
+checks_succeeded...: 100.00% 225 out of 225
+checks_failed......: 0.00%   0 out of 225
+status 200: all checks passed
 
-  █ TOTAL RESULTS
+HTTP
+http_req_duration..............: avg=158.18ms min=53.59ms med=146.35ms max=322.74ms p(90)=276.64ms p(95)=297.43ms
+  { expected_response:true }...: avg=158.18ms min=53.59ms med=146.35ms max=322.74ms p(90)=276.64ms p(95)=297.43ms
+http_req_failed................: 0.00%  0 out of 450
+http_reqs......................: 450    7.418077/s
 
-    checks_total.......: 225     3.730537/s
-    checks_succeeded...: 100.00% 225 out of 225
-    checks_failed......: 0.00%   0 out of 225
+EXECUTION
+iteration_duration.............: avg=1.34s min=1.27s med=1.32s max=2.72s p(90)=1.35s p(95)=1.37s
+iterations.....................: 225    3.709038/s
+vus............................: 5      min=5 max=5
+vus_max........................: 5      min=5 max=5
 
-    ✓ status 200 байна
+NETWORK
+data_received..................: 864 kB 14 kB/s
+data_sent......................: 38 kB 624 B/s
 
-    HTTP
-    http_req_duration..............: avg=156.94ms min=54.9ms med=169.14ms max=408.91ms p(90)=271.9ms p(95)=318.37ms
-      { expected_response:true }...: avg=156.94ms min=54.9ms med=169.14ms max=408.91ms p(90)=271.9ms p(95)=318.37ms
-    http_req_failed................: 0.00%  0 out of 450
-    http_reqs......................: 450    7.461074/s
-
-    EXECUTION
-    iteration_duration.............: avg=1.33s    min=1.27s  med=1.29s    max=2.49s    p(90)=1.43s   p(95)=1.43s
-    iterations.....................: 225    3.730537/s
-    vus............................: 5      min=5        max=5
-    vus_max........................: 5      min=5        max=5
-
-    NETWORK
-    data_received..................: 864 kB 14 kB/s
-    data_sent......................: 38 kB  628 B/s
+running (1m00.7s), 0/5 VUs, 225 complete and 0 interrupted iterations
+default: 5 VUs 1m0s

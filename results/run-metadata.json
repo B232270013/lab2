@@ -1,18 +1,33 @@
 ﻿{
-    "threshold_pass":  {
-                           "vus":  30,
-                           "exitCode":  0,
-                           "slo_p95_ms":  477.555,
-                           "command":  "k6 run --no-color --quiet -e SLO_P95_MS=477.555 threshold-pass.js",
-                           "p95_ms":  286.89,
-                           "duration":  "1m"
-                       },
+    "source_note":  "5/30/100 VU metrics transcribed from the latest user-pasted terminal output. PASS rerun by assistant. Previous stages and FAIL retained.",
     "baseline":  {
                      "vus":  5,
                      "duration":  "1m",
-                     "command":  "k6 run --no-color --quiet --vus 5 --duration 1m script.js",
-                     "p95_ms":  318.37,
-                     "exitCode":  0
+                     "command":  "k6 run --vus 5 --duration 1m script.js",
+                     "p95_ms":  297.43,
+                     "source":  "user-pasted terminal output"
                  },
-    "note":  "Executed by assistant in this workspace; raw output stored in run-05vu.txt and threshold-pass.txt."
+    "run_30vu":  {
+                     "vus":  30,
+                     "duration":  "1m",
+                     "command":  "k6 run --vus 30 --duration 1m script.js",
+                     "p95_ms":  282.43,
+                     "source":  "user-pasted terminal output"
+                 },
+    "run_100vu":  {
+                      "vus":  100,
+                      "duration":  "1m",
+                      "command":  "k6 run --vus 100 --duration 1m script.js",
+                      "p95_ms":  234.01,
+                      "source":  "user-pasted terminal output"
+                  },
+    "threshold_pass":  {
+                           "vus":  30,
+                           "source":  "assistant-executed k6 run",
+                           "slo_p95_ms":  446.145,
+                           "command":  "k6 run --no-color --quiet -e SLO_P95_MS=446.145 threshold-pass.js",
+                           "exitCode":  0,
+                           "p95_ms":  235.78,
+                           "duration":  "1m"
+                       }
 }

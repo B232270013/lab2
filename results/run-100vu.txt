@@ -1,47 +1,28 @@
-PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 100 --duration 1m script.js
+Source: user-pasted terminal output (summary excerpt; logo omitted).
+Command: k6 run --vus 100 --duration 1m script.js
+Scenario: 100 looping VUs for 1m0s (gracefulStop: 30s)
 
-         /\      Grafana   /â€¾â€¾/
-    /\  /  \     |\  __   /  /
-   /  \/    \    | |/ /  /   â€¾â€¾\
-  /          \   |   (  |  (â€¾)  |
- / __________ \  |_|\_\  \_____/
+TOTAL RESULTS
+checks_total.......: 4615    75.316437/s
+checks_succeeded...: 100.00% 4615 out of 4615
+checks_failed......: 0.00%   0 out of 4615
+status 200: all checks passed
 
+HTTP
+http_req_duration..............: avg=143.19ms min=51.46ms med=217.93ms max=385.35ms p(90)=231.23ms p(95)=234.01ms
+  { expected_response:true }...: avg=143.19ms min=51.46ms med=217.93ms max=385.35ms p(90)=231.23ms p(95)=234.01ms
+http_req_failed................: 0.00%  0 out of 9230
+http_reqs......................: 9230   150.632874/s
 
-     execution: local
-        script: script.js
-        output: -
+EXECUTION
+iteration_duration.............: avg=1.3s min=1.27s med=1.28s max=2.68s p(90)=1.29s p(95)=1.3s
+iterations.....................: 4615   75.316437/s
+vus............................: 15     min=15 max=100
+vus_max........................: 100    min=100 max=100
 
-     scenarios: (100.00%) 1 scenario, 100 max VUs, 1m30s max duration (incl. graceful stop):
-              * default: 100 looping VUs for 1m0s (gracefulStop: 30s)
+NETWORK
+data_received..................: 18 MB 289 kB/s
+data_sent......................: 766 kB 13 kB/s
 
-
-
-  â–ˆ TOTAL RESULTS
-
-    checks_total.......: 4629    75.558502/s
-    checks_succeeded...: 100.00% 4629 out of 4629
-    checks_failed......: 0.00%   0 out of 4629
-
-    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
-
-    HTTP
-    http_req_duration..............: avg=142.38ms min=51.83ms med=159.37ms max=268.67ms p(90)=230.78ms p(95)=233.22ms
-      { expected_response:true }...: avg=142.38ms min=51.83ms med=159.37ms max=268.67ms p(90)=230.78ms p(95)=233.22ms
-    http_req_failed................: 0.00%  0 out of 9258
-    http_reqs......................: 9258   151.117004/s
-
-    EXECUTION
-    iteration_duration.............: avg=1.3s     min=1.27s   med=1.28s    max=2.59s    p(90)=1.29s    p(95)=1.3s
-    iterations.....................: 4629   75.558502/s
-    vus............................: 29     min=29        max=100
-    vus_max........................: 100    min=100       max=100
-
-    NETWORK
-    data_received..................: 18 MB  289 kB/s
-    data_sent......................: 767 kB 13 kB/s
-
-
-
-
-running (1m01.3s), 000/100 VUs, 4629 complete and 0 interrupted iterations
-default âœ“ [======================================] 100 VUs  1m0s
+running (1m01.3s), 000/100 VUs, 4615 complete and 0 interrupted iterations
+default: 100 VUs 1m0s
