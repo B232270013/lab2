@@ -1,15 +1,14 @@
- 
 PS C:\MUST\26-27A\F.CSA313\lab2> cd C:\MUST\26-27A\F.CSA313\lab2
 PS C:\MUST\26-27A\F.CSA313\lab2> $k6 = ".\.tools\k6-v2.2.0-windows-amd64\k6.exe"
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 version
 k6.exe v2.2.0 (commit/00a9a1b7f5, go1.26.5, windows/amd64)
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run script.js
 
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
 
 
      execution: local
@@ -21,13 +20,13 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run script.js
 
 
 
-  █ TOTAL RESULTS 
+  â–ˆ TOTAL RESULTS
 
     checks_total.......: 115     3.698701/s
     checks_succeeded...: 100.00% 115 out of 115
     checks_failed......: 0.00%   0 out of 115
 
-    ✓ status 200 байна
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
 
     HTTP
     http_req_duration..............: avg=153.91ms min=53.97ms med=156.8ms max=324ms p(90)=274.57ms p(95)=293.27ms
@@ -36,7 +35,7 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run script.js
     http_reqs......................: 230    7.397402/s
 
     EXECUTION
-    iteration_duration.............: avg=1.35s    min=1.27s   med=1.29s   max=2.27s p(90)=1.37s    p(95)=1.37s   
+    iteration_duration.............: avg=1.35s    min=1.27s   med=1.29s   max=2.27s p(90)=1.37s    p(95)=1.37s
     iterations.....................: 115    3.698701/s
     vus............................: 5      min=5        max=5
     vus_max........................: 5      min=5        max=5
@@ -49,14 +48,14 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run script.js
 
 
 running (0m31.1s), 0/5 VUs, 115 complete and 0 interrupted iterations
-default ✓ [======================================] 5 VUs  30s
+default âœ“ [======================================] 5 VUs  30s
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 30 --duration 1m script.js
 
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
 
 
      execution: local
@@ -68,13 +67,13 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 30 --duration 1m script.js
 
 
 
-  █ TOTAL RESULTS 
+  â–ˆ TOTAL RESULTS
 
     checks_total.......: 1380    22.65562/s
     checks_succeeded...: 100.00% 1380 out of 1380
     checks_failed......: 0.00%   0 out of 1380
 
-    ✓ status 200 байна
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
 
     HTTP
     http_req_duration..............: avg=144.92ms min=52.82ms med=218.67ms max=428.26ms p(90)=229.83ms p(95)=232.88ms
@@ -83,7 +82,7 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 30 --duration 1m script.js
     http_reqs......................: 2760   45.311239/s
 
     EXECUTION
-    iteration_duration.............: avg=1.31s    min=1.27s   med=1.28s    max=2.44s    p(90)=1.29s    p(95)=1.37s   
+    iteration_duration.............: avg=1.31s    min=1.27s   med=1.28s    max=2.44s    p(90)=1.29s    p(95)=1.37s
     iterations.....................: 1380   22.65562/s
     vus............................: 30     min=30        max=30
     vus_max........................: 30     min=30        max=30
@@ -96,14 +95,14 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 30 --duration 1m script.js
 
 
 running (1m00.9s), 00/30 VUs, 1380 complete and 0 interrupted iterations
-default ✓ [======================================] 30 VUs  1m0s
+default âœ“ [======================================] 30 VUs  1m0s
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 100 --duration 1m script.js
 
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
 
 
      execution: local
@@ -115,13 +114,13 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 100 --duration 1m script.js
 
 
 
-  █ TOTAL RESULTS 
+  â–ˆ TOTAL RESULTS
 
     checks_total.......: 4629    75.558502/s
     checks_succeeded...: 100.00% 4629 out of 4629
     checks_failed......: 0.00%   0 out of 4629
 
-    ✓ status 200 байна
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
 
     HTTP
     http_req_duration..............: avg=142.38ms min=51.83ms med=159.37ms max=268.67ms p(90)=230.78ms p(95)=233.22ms
@@ -130,7 +129,7 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 100 --duration 1m script.js
     http_reqs......................: 9258   151.117004/s
 
     EXECUTION
-    iteration_duration.............: avg=1.3s     min=1.27s   med=1.28s    max=2.59s    p(90)=1.29s    p(95)=1.3s    
+    iteration_duration.............: avg=1.3s     min=1.27s   med=1.28s    max=2.59s    p(90)=1.29s    p(95)=1.3s
     iterations.....................: 4629   75.558502/s
     vus............................: 29     min=29        max=100
     vus_max........................: 100    min=100       max=100
@@ -143,14 +142,14 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run --vus 100 --duration 1m script.js
 
 
 running (1m01.3s), 000/100 VUs, 4629 complete and 0 interrupted iterations
-default ✓ [======================================] 100 VUs  1m0s
+default âœ“ [======================================] 100 VUs  1m0s
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run stages.js
 
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
 
 
      execution: local
@@ -162,13 +161,13 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run stages.js
 
 
 
-  █ TOTAL RESULTS 
+  â–ˆ TOTAL RESULTS
 
     checks_total.......: 3540    23.496693/s
     checks_succeeded...: 100.00% 3540 out of 3540
     checks_failed......: 0.00%   0 out of 3540
 
-    ✓ status 200 байна
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
 
     HTTP
     http_req_duration..............: avg=142.68ms min=52.27ms med=217.78ms max=384.63ms p(90)=230.12ms p(95)=232.59ms
@@ -177,7 +176,7 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run stages.js
     http_reqs......................: 7080   46.993386/s
 
     EXECUTION
-    iteration_duration.............: avg=1.3s     min=1.27s   med=1.28s    max=2.26s    p(90)=1.29s    p(95)=1.3s    
+    iteration_duration.............: avg=1.3s     min=1.27s   med=1.28s    max=2.26s    p(90)=1.29s    p(95)=1.3s
     iterations.....................: 3540   23.496693/s
     vus............................: 3      min=1         max=100
     vus_max........................: 100    min=100       max=100
@@ -190,14 +189,14 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run stages.js
 
 
 running (2m30.7s), 000/100 VUs, 3540 complete and 0 interrupted iterations
-default ✓ [======================================] 000/100 VUs  2m30s
+default âœ“ [======================================] 000/100 VUs  2m30s
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run -e SLO_P95_MS=617.79 threshold-pass.js
 
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
 
 
      execution: local
@@ -209,22 +208,22 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run -e SLO_P95_MS=617.79 threshold-pass.j
 
 
 
-  █ THRESHOLDS 
+  â–ˆ THRESHOLDS
 
     http_req_duration
-    ✓ 'p(95)<617.79' p(95)=253.78ms
+    âœ“ 'p(95)<617.79' p(95)=253.78ms
 
     http_req_failed
-    ✓ 'rate<0.01' rate=0.00%
+    âœ“ 'rate<0.01' rate=0.00%
 
 
-  █ TOTAL RESULTS 
+  â–ˆ TOTAL RESULTS
 
     checks_total.......: 1379    22.554669/s
     checks_succeeded...: 100.00% 1379 out of 1379
     checks_failed......: 0.00%   0 out of 1379
 
-    ✓ status 200 байна
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
 
     HTTP
     http_req_duration..............: avg=147.88ms min=52.92ms med=218.89ms max=439.02ms p(90)=234.04ms p(95)=253.78ms
@@ -233,7 +232,7 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run -e SLO_P95_MS=617.79 threshold-pass.j
     http_reqs......................: 2758   45.109339/s
 
     EXECUTION
-    iteration_duration.............: avg=1.31s    min=1.27s   med=1.28s    max=2.3s     p(90)=1.32s    p(95)=1.45s   
+    iteration_duration.............: avg=1.31s    min=1.27s   med=1.28s    max=2.3s     p(90)=1.32s    p(95)=1.45s
     iterations.....................: 1379   22.554669/s
     vus............................: 1      min=1         max=30
     vus_max........................: 30     min=30        max=30
@@ -246,14 +245,14 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run -e SLO_P95_MS=617.79 threshold-pass.j
 
 
 running (1m01.1s), 00/30 VUs, 1379 complete and 0 interrupted iterations
-default ✓ [======================================] 30 VUs  1m0s
+default âœ“ [======================================] 30 VUs  1m0s
 PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run threshold-fail.js
 
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
 
 
      execution: local
@@ -265,22 +264,22 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run threshold-fail.js
 
 
 
-  █ THRESHOLDS 
+  â–ˆ THRESHOLDS
 
     http_req_duration
-    ✗ 'p(95)<50' p(95)=276.29ms
+    âœ— 'p(95)<50' p(95)=276.29ms
 
     http_req_failed
-    ✓ 'rate<0.01' rate=0.00%
+    âœ“ 'rate<0.01' rate=0.00%
 
 
-  █ TOTAL RESULTS 
+  â–ˆ TOTAL RESULTS
 
     checks_total.......: 1380    22.627797/s
     checks_succeeded...: 100.00% 1380 out of 1380
     checks_failed......: 0.00%   0 out of 1380
 
-    ✓ status 200 байна
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
 
     HTTP
     http_req_duration..............: avg=150.04ms min=52.8ms med=149.24ms max=323.44ms p(90)=270.55ms p(95)=276.29ms
@@ -289,7 +288,7 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run threshold-fail.js
     http_reqs......................: 2760   45.255594/s
 
     EXECUTION
-    iteration_duration.............: avg=1.32s    min=1.27s  med=1.29s    max=2.29s    p(90)=1.33s    p(95)=1.37s   
+    iteration_duration.............: avg=1.32s    min=1.27s  med=1.29s    max=2.29s    p(90)=1.33s    p(95)=1.37s
     iterations.....................: 1380   22.627797/s
     vus............................: 30     min=30        max=30
     vus_max........................: 30     min=30        max=30
@@ -302,6 +301,62 @@ PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run threshold-fail.js
 
 
 running (1m01.0s), 00/30 VUs, 1380 complete and 0 interrupted iterations
-default ✓ [======================================] 30 VUs  1m0s
-ERRO[0061] thresholds on metrics 'http_req_duration' have been crossed 
-PS C:\MUST\26-27A\F.CSA313\lab2> 
+default âœ“ [======================================] 30 VUs  1m0s
+ERRO[0061] thresholds on metrics 'http_req_duration' have been crossed
+PS C:\MUST\26-27A\F.CSA313\lab2> & $k6 run -e SLO_P95_MS=439.905 threshold-pass.js
+
+         /\      Grafana   /â€¾â€¾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   â€¾â€¾\
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/
+
+
+     execution: local
+        script: threshold-pass.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 30 max VUs, 1m30s max duration (incl. graceful stop):
+              * default: 30 looping VUs for 1m0s (gracefulStop: 30s)
+
+
+
+  â–ˆ THRESHOLDS
+
+    http_req_duration
+    âœ“ 'p(95)<439.905' p(95)=232.83ms
+
+    http_req_failed
+    âœ“ 'rate<0.01' rate=0.00%
+
+
+  â–ˆ TOTAL RESULTS
+
+    checks_total.......: 1380    22.716251/s
+    checks_succeeded...: 100.00% 1380 out of 1380
+    checks_failed......: 0.00%   0 out of 1380
+
+    âœ“ status 200 Ð±Ð°Ð¹Ð½Ð°
+
+    HTTP
+    http_req_duration..............: avg=143.43ms min=52.85ms med=155.71ms max=302.85ms p(90)=230.27ms p(95)=232.83ms
+      { expected_response:true }...: avg=143.43ms min=52.85ms med=155.71ms max=302.85ms p(90)=230.27ms p(95)=232.83ms
+    http_req_failed................: 0.00%  0 out of 2760
+    http_reqs......................: 2760   45.432502/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.31s    min=1.27s   med=1.28s    max=2.5s     p(90)=1.29s    p(95)=1.31s
+    iterations.....................: 1380   22.716251/s
+    vus............................: 30     min=30        max=30
+    vus_max........................: 30     min=30        max=30
+
+    NETWORK
+    data_received..................: 5.3 MB 87 kB/s
+    data_sent......................: 230 kB 3.8 kB/s
+
+
+
+
+running (1m00.7s), 00/30 VUs, 1380 complete and 0 interrupted iterations
+default âœ“ [======================================] 30 VUs  1m0s
+PS C:\MUST\26-27A\F.CSA313\lab2>
