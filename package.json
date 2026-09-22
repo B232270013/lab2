@@ -1,0 +1,24 @@
+{
+  "name": "lab2",
+  "version": "1.0.0",
+  "description": "**Хичээл:** F.CSA313 — Программ хангамжийн чанарын баталгаа ба тест   **Оюутан:** Б. Мөнгөншагай   **Оюутны код:** B232270013",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/B232270013/lab2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/B232270013/lab2/issues"
+  },
+  "homepage": "https://github.com/B232270013/lab2#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
