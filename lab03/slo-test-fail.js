@@ -9,7 +9,7 @@ export const options = {
     'http_req_duration{name:cart}': ['p(95)<20'],
     'http_req_failed{name:pay}': ['rate<0.08'],
     checks: ['rate>=0.95'],
-    'http_req_duration{name:report}': ['p(95)<450'],
+    'http_req_duration{name:report}': ['p(95)<100'],
   },
 };
 
