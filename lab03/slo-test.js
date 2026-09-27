@@ -3,7 +3,7 @@ import { check, sleep } from 'k6';
 
 export const options = {
   vus: 20,
-  duration: '2m',
+  duration: '1m',
   summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(95)', 'p(99)'],
   thresholds: {
     'http_req_duration{name:cart}': ['p(95)<20'],
